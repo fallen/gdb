@@ -83,7 +83,7 @@ lm32_register_reggroup_p (struct gdbarch *gdbarch, int regnum,
       || (regnum == SIM_LM32_PC_REGNUM);
   else if (group == system_reggroup)
     return ((regnum >= SIM_LM32_EA_REGNUM) && (regnum <= SIM_LM32_BA_REGNUM))
-      || ((regnum >= SIM_LM32_EID_REGNUM) && (regnum <= SIM_LM32_IP_REGNUM));
+      || ((regnum >= SIM_LM32_EID_REGNUM) && (regnum <= SIM_LM32_TLBBADVADDR_REGNUM));
   return default_register_reggroup_p (gdbarch, regnum, group);
 }
 
@@ -97,7 +97,8 @@ lm32_register_name (struct gdbarch *gdbarch, int reg_nr)
     "r8", "r9", "r10", "r11", "r12", "r13", "r14", "r15",
     "r16", "r17", "r18", "r19", "r20", "r21", "r22", "r23",
     "r24", "r25", "gp", "fp", "sp", "ra", "ea", "ba",
-    "PC", "EID", "EBA", "DEBA", "IE", "IM", "IP"
+    "PC", "EID", "EBA", "DEBA", "IE", "IM", "IP", "PSW",
+    "TLBVADDR", "TLBPADDR", "TLBBADVADDR"
   };
 
   if ((reg_nr < 0) || (reg_nr >= ARRAY_SIZE (register_names)))
@@ -119,7 +120,7 @@ lm32_register_type (struct gdbarch *gdbarch, int reg_nr)
 static int
 lm32_cannot_store_register (struct gdbarch *gdbarch, int regno)
 {
-  return (regno == SIM_LM32_R0_REGNUM) || (regno == SIM_LM32_EID_REGNUM);
+  return (regno == SIM_LM32_R0_REGNUM) || (regno == SIM_LM32_EID_REGNUM) || (regno == SIM_LM32_TLBBADVADDR_REGNUM);
 }
 
 /* Analyze a function's prologue.  */

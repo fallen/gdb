@@ -43,6 +43,10 @@
 #define LM32_CSR_WP1            0x19
 #define LM32_CSR_WP2            0x1a
 #define LM32_CSR_WP3            0x1b
+#define LM32_CSR_PSW            0x1d
+#define LM32_CSR_TLBVADDR       0x1e
+#define LM32_CSR_TLBPADDR       0x1f
+#define LM32_CSR_TLBBADVADDR    0x1f
 
 /* Exception IDs.  */
 #define LM32_EID_RESET                  0
